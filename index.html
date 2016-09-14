@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Game</title>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="800" height="800"></canvas>
+    <script type="text/javascript">
+      var element = document.getElementById("myCanvas"),
+          ctx = element.getContext("2d");
+      function gameBoard(){
+        var gape = 50, rectWidth = 400;
+        ctx.strokeStyle = "rgba(0, 0, 0, 1)";
+        for (var i = 0; i < 3; i++) {
+          ctx.strokeRect(gape*i, gape*i, rectWidth-gape*2*i, rectWidth-gape*2*i);
+        }
+        ctx.moveTo(rectWidth/2,0);
+        ctx.lineTo(rectWidth/2,gape*2);
+
+        ctx.moveTo(0,rectWidth/2);
+        ctx.lineTo(gape*2,rectWidth/2);
+
+        ctx.moveTo(rectWidth,rectWidth/2);
+        ctx.lineTo(rectWidth-gape*2,rectWidth/2);
+
+        ctx.moveTo(rectWidth/2,rectWidth);
+        ctx.lineTo(rectWidth/2,rectWidth-gape*2);
+
+        ctx.stroke();
+      }
+
+      var player1 = [
+        {id:1, x:500, y:50, radius:20,color:"red"},
+        {id:1, x:500, y:100, radius:20,color:"red"},
+        {id:1, x:500, y:150, radius:20,color:"red"},
+        {id:1, x:500, y:200, radius:20,color:"red"},
+        {id:1, x:500, y:250, radius:20,color:"red"},
+        {id:1, x:500, y:300, radius:20,color:"red"},
+        {id:1, x:500, y:350, radius:20,color:"red"},
+        {id:1, x:500, y:400, radius:20,color:"red"},
+        {id:1, x:500, y:450, radius:20,color:"red"}
+      ];
+      var player2 = [
+        {id:1, x:600, y:50, radius:20,color:"green"},
+        {id:1, x:600, y:100, radius:20,color:"green"},
+        {id:1, x:600, y:150, radius:20,color:"green"},
+        {id:1, x:600, y:200, radius:20,color:"green"},
+        {id:1, x:600, y:250, radius:20,color:"green"},
+        {id:1, x:600, y:300, radius:20,color:"green"},
+        {id:1, x:600, y:350, radius:20,color:"green"},
+        {id:1, x:600, y:400, radius:20,color:"green"},
+        {id:1, x:600, y:450, radius:20,color:"green"}
+      ]
+      function createPlayers(){
+        for (var i = 0; i < player1.length; i++) {
+          ctx.beginPath();
+          ctx.arc(player1[i].x, player1[i].y, player1[i].radius, 0, 2 * Math.PI, false);
+          ctx.fillStyle = player1[i].color;
+          ctx.fill();
+        }
+        for (var i = 0; i < player2.length; i++) {
+          ctx.beginPath();
+          ctx.arc(player2[i].x, player2[i].y, player2[i].radius, 0, 2 * Math.PI, false);
+          ctx.fillStyle = player2[i].color;
+          ctx.fill();
+        }
+      }
+      createPlayers();
+      gameBoard();
+    </script>
+  </body>
+</html>
